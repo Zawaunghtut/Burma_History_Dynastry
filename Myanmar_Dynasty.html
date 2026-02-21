@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မြန်မာမင်းဆက်များ | ရွှေရာဇဝင်</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pyidaungsu', sans-serif;
+            background: #1a0e0b;
+            color: #f5e6d3;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ခေါင်းစဉ် */
+        .gold-header {
+            background: linear-gradient(145deg, #3e1b12, #5f2c1e);
+            border: 2px solid #c9a13b;
+            border-radius: 50px;
+            padding: 30px 20px;
+            margin: 30px 0 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        .gold-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #f9e084, #f1c40f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* ရှာဖွေရေး */
+        .search-wrapper {
+            margin: 30px 0 40px;
+            text-align: center;
+        }
+
+        .search-box {
+            width: 80%;
+            max-width: 600px;
+            padding: 18px 30px;
+            font-size: 1.3rem;
+            font-family: 'Pyidaungsu', sans-serif;
+            background: rgba(255, 245, 215, 0.1);
+            border: 2px solid #b48b3a;
+            border-radius: 60px;
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #f5c542;
+            box-shadow: 0 0 20px #f1c40f;
+            background: rgba(40, 20, 10, 0.7);
+        }
+
+        .search-box::placeholder {
+            color: #d4b68a;
+        }
+
+        /* ကတ်များ */
+        .era-card {
+            background: rgba(44, 24, 18, 0.9);
+            border: 1px solid #b59453;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .era-header {
+            padding: 20px 30px;
+            background: linear-gradient(165deg, #5e3627, #3e2219);
+            cursor: pointer;
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffefcf;
+            border-left: 8px solid #dfb15c;
+            transition: 0.2s;
+        }
+
+        .era-header .icon {
+            font-size: 2.5rem;
+            color: #f5cb7e;
+        }
+
+        .era-content {
+            display: none;
+            padding: 25px;
+            background: rgba(27, 16, 12, 0.8);
+        }
+
+        .description {
+            background: #4b3122;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border-left: 5px solid #f1cf8a;
+            margin-bottom: 25px;
+            color: #fbeec9;
+        }
+
+        .king-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .king-list li {
+            background: rgba(88, 51, 35, 0.8);
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: 1px solid #b4904b;
+            display: flex;
+            align-items: center;
+        }
+
+        .king-list li::before {
+            content: "👑";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            border-top: 2px solid #8a6a3f;
+            color: #cbb28b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- ခေါင်းစဉ် -->
+    <div class="gold-header">
+        <h1>မြန်မာ့မင်းဆက် ရွှေရာဇဝင်</h1>
+        <p>တကောင်း မှ ကုန်းဘောင် အထိ</p>
+    </div>
+
+    <!-- ရှာဖွေရေး အကွက် -->
+    <div class="search-wrapper">
+        <input type="text" id="searchBox" class="search-box" placeholder="🔍 မင်းဆက် သို့မဟုတ် ဘုရင်အမည် ရှာရန်..." autofocus>
+    </div>
+
+    <!-- မင်းဆက်များ -->
+    <div id="dynastyList">
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၁။ ပထမတကောင်းမင်းဆက် (၃၃ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">အဘိရာဇာ နတ်ရွာစံသောအခါ သားတော်နှစ်ပါး နန်းလုကြပြီး အငယ်က အနိုင်ရကာ တကောင်းကို ဆက်ခံသည်။</div>
+                <ul class="king-list" id="dynasty1">
+                    <li>အဘိရာဇာ</li><li>ကံရာဇာငယ်</li><li>ဇမဗြူဒီပရာဇာ</li><li>သင်္ဃသရာဇာ</li><li>ဝိပ်ပန်နရာဇာ</li><li>ဒေဝတရာဇာ</li><li>မုနိကရာဇာ</li><li>နာဂရာဇာ</li><li>ဣန္ဒရာဇာ</li><li>သမုတိရာဇာ</li><li>ဒေဝရာဇာ</li><li>မဟိန်ဒရာဇာ</li><li>ဝိမလရာဇာ</li><li>သီဟနုရာဇာ</li><li>မင်္ဂလရာဇာ</li><li>ကံသရာဇာ</li><li>ကလိင်္ဂရာဇာ</li><li>သင်းတွဲရာဇာ</li><li>သီဟဠရာဇာ</li><li>ဟံသာရာဇာ</li><li>ဝရရာဇာ</li><li>အလောင်းရာဇာ</li><li>ကောလကရာဇာ</li><li>သူရိယရာဇာ</li><li>သင်ကြီးရာဇာ</li><li>တိုင်းချစ်ရာဇာ</li><li>မဓုရာဇာ</li><li>မင်းလှကြီးရာဇာ</li><li>သံသုသီဟရာဇာ</li><li>ဓနင်္ဂရာဇာ</li><li>ဟိန်ဒရာဇာ</li><li>မောရိယရာဇာ</li><li>ဘိန္နကရာဇာ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၂။ ဒုတိယတကောင်းမင်းဆက် (၁၇ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">သာကီဝင်မင်း ဓဇရာဇာသည် မလည်အရပ်သို့ ရောက်လာပြီး မင်းဆက်သစ်ကို ထူထောင်ခဲ့သည်။</div>
+                <ul class="king-list">
+                    <li>သတိုးဇမ္ဗူဒီပဓဇရာဇာ</li><li>သတိုးတိုင်းသရာဇာ</li><li>သတိုးရထားရမင်း</li><li>သတိုးတံခွန်ရမင်း</li><li>သတိုးလှံပျံရမင်း</li><li>သတိုးရွှေမင်း</li><li>သတိုးဂဠုန်ရမင်း</li><li>သတိုးနဂါးရမင်း</li><li>သတိုးနဂါးနိုင်</li><li>သတိုးရဟောလာမင်း</li><li>သတိုးပေါင်းရှည်မင်း</li><li>သတိုးကျောက်ရှည်မင်း</li><li>သတိုးဆင်လောက်မင်း</li><li>သတိုးဆင်ထိန်းမင်း</li><li>သတိုးတိုင်းချစ်မင်း</li><li>သတိုးမင်းကြီးမင်း</li><li>သတိုးမဟာရာဇာမင်း</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၃။ သရေခေတ္တရာမင်းဆက် (၂၇ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">ခရစ်မပေါ်မီ ၄၄၃ တွင် မြို့တည်ခဲ့သည်။ ပျူခေတ်တွင် အကြီးဆုံးမြို့ဖြစ်သည်။</div>
+                <ul class="king-list">
+                    <li>မဟာသမ္ဘာဝ</li><li>စူဠာသမ္ဘာဝ</li><li>ဒွတ္တဘောင်</li><li>ဒွတ္တရန်</li><li>ရန်ပေါင်</li><li>ရန်မန်</li><li>ရက္ခန်</li><li>ခန်လောင်း</li><li>လက်ခိုင်</li><li>သိရိခန်</li><li>သီရိရာဇ်</li><li>ငတပါး</li><li>ပါပိရန်</li><li>ရန်မုက္ခ</li><li>ရန်သိင်္ခ</li><li>ရန်မုဉ္ဇလိန္ဒ</li><li>ဘေရိန္ဒ</li><li>မုဉ္ဇလ</li><li>ပုဏ္ဏ</li><li>သာခ</li><li>သာသိ</li><li>ကန္န</li><li>ကန်တက်</li><li>ဘဇ္ဇ</li><li>သုမုန္ဒရီမင်း</li><li>အတိတျာ</li><li>သုပညာနဂရဆိန္ဒ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၄။ ပုဂံမင်းဆက် (၅၈ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">မြန်မာ့သမိုင်းတွင် အရှည်ကြာဆုံးခေတ် (၁၂၆၂ နှစ်) ဖြစ်သည်။ အနော်ရထာမင်း လက်ထက်တွင် ပထမမြန်မာနိုင်ငံတော်ကို တည်ထောင်ခဲ့သည်။</div>
+                <ul class="king-list">
+                    <li>သမုဒ္ဒရာဇ်</li><li>ရသေ့ကြောင်</li><li>ပျူမင်းထီး</li><li>ထီးမင်းယည်</li><li>ယဉ်မင်းပိုက်</li><li>ပိုက်သေဉ်လည်</li><li>သေဉ်လည်ကြောင်</li><li>ကြောင်တူရစ်</li><li>သည်ထန်မင်း</li><li>မုက္ခမန် အမတ်</li><li>သူရဲ အမတ်</li><li>သာရမွန်</li><li>သိုက်တိုင်မင်း</li><li>သေဉ်လည်ကြောင်ငယ်</li><li>သေဉ်လည်ပိုက်</li><li>ခန်းလောင်း</li><li>ခန်းတက်</li><li>ထွန်တိုက်</li><li>ထွန်ပစ်</li><li>ထွန်ချစ်</li><li>ပုပ္ပါးစောရဟန်း</li><li>ရွှေအုန်းသီး</li><li>ပိတ်သုံ</li><li>ပိတ်တောင်း</li><li>စောခွေး</li><li>မြင်းကျွေး</li><li>သိန်ခဲ</li><li>သိန်ခွန်</li><li>ရွှေလောင်း</li><li>ထွန်တွင်းမင်း</li><li>ရွှေမှောက်</li><li>ထွန်လတ်</li><li>စောခင်နှစ်</li><li>ခဲလူးမင်း</li><li>ပျဉ်းပြားမင်း (ပုဂံတည်)</li><li>တန်နက်မင်း</li><li>စလေငခွေး</li><li>သိန်းခိုမင်း</li><li>တောင်သူကြီးမင်း</li><li>ကွမ်းဆော်ကြောင်ဖြူ</li><li>ကျဉ်စိုး</li><li>စုက္ကတေး</li><li>အနော်ရထာ</li><li>စောလူး</li><li>ကျန်စစ်သား</li><li>အလောင်းစည်သူ</li><li>မင်းရှင်စော</li><li>နရသူ</li><li>နရသိင်္ခ</li><li>နရပတိစည်သူ</li><li>ဇေယျသိင်္ခ</li><li>ကျစွာ</li><li>ဥဇနာ</li><li>သီဟသူ</li><li>နရသီဟပတေ့</li><li>ကျော်စွာ</li><li>စောနစ်</li><li>စောမွန်နစ်</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၅။ မဂဒူးမင်းဆက် (၁၈ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">မုတ္တမမြို့မှ စတင်တည်ထောင်ခဲ့သည်။ ရာဇာဓိရာဇ်လက်ထက်တွင် အင်အားအကြီးဆုံးဖြစ်ခဲ့သည်။</div>
+                <ul class="king-list">
+                    <li>ဝါရီရူး (မဂဒူး)</li><li>ခွန်လော</li><li>စောသင်မောင်</li><li>စောဇိတ်</li><li>ဇိတ်ပွန်</li><li>စောအဲကံကောင်း</li><li>ဗညားအဲလော</li><li>ဗညားဦး</li><li>ရာဇာဓိရာဇ်</li><li>ဗညားဓမ္မရာဇာ</li><li>ပထမဗညားရံ</li><li>ဗညားဗရူး</li><li>ဗညားကျန်းထော</li><li>လိပ်မွတ်ထော</li><li>ရှင်စောပု</li><li>ဓမ္မစေတီ</li><li>ဒုတိယဗညားရံ</li><li>သုရှင်တကာရွတ်ပိ</li><li>သမိန်ထောရာမ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၆။ အင်းဝမင်းဆက် (၃၀ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">သတိုးမင်းဖျားက ၁၃၆၅ တွင် အင်းဝကို တည်ထောင်သည်။</div>
+                <ul class="king-list">
+                    <li>သတိုးမင်းဖျား</li><li>မင်းကြီးစွာစော်ကဲ</li><li>ဆင်ဖြူရှင်တရဖျား</li><li>ပထမမင်းခေါင်</li><li>ဆင်ဖြူရှင်သီဟသူ</li><li>မင်းလှငယ်</li><li>ကလေးကျေးတောင်ညို</li><li>မိုးညှင်းသတိုး</li><li>မင်းရဲကျော်စွာကြီး</li><li>နရပတိ (ထူပါရုံဒါယကာ)</li><li>ပြည်စုန်သီဟသူ</li><li>ဒုတိယမင်းခေါင်</li><li>ရွှေနန်းကျော့ရှင်နရပတိ</li><li>သိုဟန်ဘွား</li><li>အုန်းဘောင်ခုံမှိုင်း</li><li>မိုးဗြဲနရပတိ</li><li>စစ်ကိုင်းနရပတိစည်သူ</li><li>သတိုးမင်းစော</li><li>အမတ်လင်္ကျာစည်သူ</li><li>မင်းရဲကျော်စွာ</li><li>ညောင်ရမ်းမင်းတရားကြီး</li><li>အနောက်ဖက်လွန်မင်း</li><li>သာလွန်မင်း</li><li>ပင်းတလဲမင်း</li><li>ပြည်မင်း</li><li>နရာဝရ</li><li>မင်းရဲကျော်ထင်</li><li>စနေမင်း</li><li>တနင်္ဂနွေမင်း</li><li>မဟာဓမ္မရာဇာဓိပတိ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၇။ တောင်ငူမင်းဆက် (၈ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">မင်းကြီးညိုမှ စတင်သည်။ တပင်ရွှေထီးနှင့် ဘုရင့်နောင်တို့သည် ဒုတိယမြန်မာနိုင်ငံတော်ကို တည်ထောင်ခဲ့သည်။</div>
+                <ul class="king-list">
+                    <li>မင်းကြီးညို</li><li>တပင်ရွှေထီး</li><li>မင်းကြီးဆွေ</li><li>တောင်ငူမင်းခေါင်</li><li>ဘုရင့်နောင်</li><li>နန္ဒဘုရင်</li><li>မင်းရဲသီဟသူ</li><li>နတ်သျှင်နောင်</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="era-card">
+            <div class="era-header" onclick="toggleCard(this)">
+                <span>၈။ ကုန်းဘောင်မင်းဆက် (၁၁ ဆက်)</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="era-content">
+                <div class="description">အလောင်းမင်းတရားကြီးမှ စတင်ကာ တတိယမြန်မာနိုင်ငံတော်ကို တည်ထောင်ခဲ့သည်။ မြန်မာ့နောက်ဆုံးမင်းဆက်ဖြစ်သည်။</div>
+                <ul class="king-list">
+                    <li>အလောင်းမင်းတရား</li><li>နောင်တော်ကြီးမင်း</li><li>ဆင်ဖြူရှင်မင်း</li><li>စဉ့်ကူးမင်း</li><li>ဖောင်းကားစားမောင်မောင်</li><li>ဗဒုံမင်း (ဘိုးတော်ဘုရား)</li><li>ဘကြီးတော် (စစ်ကိုင်းမင်း)</li><li>သာယာဝတီမင်း</li><li>ပုဂံမင်း</li><li>မင်းတုန်းမင်း</li><li>သီပေါမင်း</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Zaw Aung Htut. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+// ကတ်ဖွင့်ပိတ် function
+function toggleCard(header) {
+    const content = header.nextElementSibling;
+    const icon = header.querySelector('.icon');
+    
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+        icon.textContent = '+';
+    } else {
+        content.style.display = 'block';
+        icon.textContent = '−';
+    }
+}
+
+// ရှာဖွေရေး function (အဆင့်မြှင့်ထား)
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBox = document.getElementById('searchBox');
+    const cards = document.querySelectorAll('.era-card');
+    
+    searchBox.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        cards.forEach(card => {
+            const cardText = card.innerText.toLowerCase();
+            if (cardText.includes(searchTerm) || searchTerm === '') {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // ရှာဖွေရေး အကွက်ကို အလုပ်လုပ်စေရန် focus ပေးထား
+    searchBox.focus();
+});
+</script>
+</body>
+</html>
